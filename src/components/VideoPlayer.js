@@ -29,6 +29,9 @@ const VideoPlayer = memo(({ streamUrl }) => {
                     levelLoadingTimeOut: 20000,
                     fragLoadingTimeOut: 20000,
                     fragLoadingMaxRetry: 6,
+                    xhrSetup: function (xhr, url) {
+                        xhr.withCredentials = false;
+                    }
                 });
 
                 hls.loadSource(streamUrl);
