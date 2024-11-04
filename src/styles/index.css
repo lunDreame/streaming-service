@@ -1,0 +1,393 @@
+/* Base Variables */
+:root {
+    /* Colors */
+    --primary-color: #4a90e2;
+    --primary-hover: #357abd;
+    --background-color: #f8f9fa;
+    --secondary-bg: #ffffff;
+    --text-color: #2c3e50;
+    --text-secondary: #666666;
+    --border-color: #e1e4e8;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
+    --button-text: #ffffff;
+    --button-hover-bg: #357abd;
+
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+
+    /* Border Radius & Transitions */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --transition-normal: 0.3s;
+}
+
+/* Dark Mode Colors */
+[data-theme='dark'] {
+    --primary-color: #60a5fa;
+    --primary-hover: #3b82f6;
+    --background-color: #1a1a1a;
+    --secondary-bg: #2d2d2d;
+    --text-color: #e1e1e1;
+    --text-secondary: #a0a0a0;
+    --border-color: #404040;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --button-hover-bg: #3b82f6;
+}
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* Layout */
+.app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    min-height: 100vh;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: var(--spacing-lg);
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    color: var(--text-color);
+}
+
+h1 {
+    font-size: 2.5rem;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-size: 2rem;
+    letter-spacing: -0.3px;
+}
+
+/* Channel Selection Styles */
+.channel-selection {
+    padding: var(--spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.channel-type-tabs {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.tab-button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.tab-button.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* Channel Lists & Cards */
+.channel-list,
+.subchannel-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md);
+    margin: var(--spacing-xl) 0;
+}
+
+.channel-card {
+    position: relative;
+    padding: var(--spacing-lg);
+    background-color: var(--secondary-bg);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-align: center;
+}
+
+.channel-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    background-color: var(--primary-color);
+}
+
+.channel-card:hover h3 {
+    color: white;
+}
+
+.channel-card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    transition: color var(--transition-normal);
+}
+
+/* Button Styles */
+.channel-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--button-text);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    overflow: hidden;
+}
+
+.channel-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--button-hover-bg);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: -1;
+}
+
+.channel-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.channel-button:hover::after {
+    opacity: 1;
+}
+
+.channel-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+/* Video Player Styles */
+.video-player-container {
+    position: relative;
+    width: 100%;
+    background-color: #000;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+}
+
+.video-player {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #000;
+    transition: opacity var(--transition-normal);
+}
+
+.video-player.loading {
+    opacity: 0.7;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Loading States */
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error States */
+.error-message {
+    color: var(--error-color);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--error-color);
+    border-radius: var(--border-radius-md);
+    text-align: center;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    animation: fadeIn var(--transition-normal);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+    width: 48px;
+    height: 48px;
+    padding: var(--spacing-md);
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: var(--button-text);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: all var(--transition-normal);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background-color: var(--button-hover-bg);
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .app {
+        padding: var(--spacing-lg);
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .channel-list,
+    .subchannel-list {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-md);
+    }
+
+    .channel-button {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.9rem;
+    }
+
+    .tab-button {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 1rem;
+    }
+
+    .channel-card {
+        padding: var(--spacing-md);
+    }
+
+    .channel-card h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .app {
+        padding: var(--spacing-md);
+    }
+
+    .channel-list,
+    .subchannel-list {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    .theme-toggle {
+        bottom: var(--spacing-md);
+        right: var(--spacing-md);
+    }
+
+    .tab-button {
+        padding: var(--spacing-sm);
+        font-size: 0.9rem;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+.channel-button:focus,
+.theme-toggle:focus {
+    outline: 2px solid var(--primary-hover);
+    outline-offset: 2px;
+}
