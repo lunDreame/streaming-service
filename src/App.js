@@ -13,7 +13,7 @@ const App = () => {
     return (
         <ErrorBoundary>
             <AppProvider>
-                <Router>
+                <Router basename={process.env.PUBLIC_URL}>
                     <div className="app">
                         <ThemeToggle />
                         <Suspense fallback={<Loading />}>
